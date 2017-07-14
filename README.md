@@ -27,6 +27,7 @@ python gazeheatplot.py --input-path gaze-data.csv --display-width 1440 --display
 | ------------- | ------------- |
 |     123       |      654      |
 |     121       |      657      |
+|     ...       |      ...      |
 
  ## Appreciation
  The script is based on the heat map plotter of [PyGaze](http://www.pygaze.org).

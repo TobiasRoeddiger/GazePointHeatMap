@@ -21,3 +21,6 @@ python gazeheatplot.py --input-path gaze-data.csv --display-width 1440 --display
  [-o OUTPUT_NAME      --output-name OUTPUT_NAME            name of the output file                   ]
  [-b BACKGROUND_IMAGE --background-image BACKGROUND_IMAGE  path to the background image              ]
  ```
+ 
+ ## Appreciation
+ The script is based on the heat map plotter of [PyGaze](http://www.pygaze.org).

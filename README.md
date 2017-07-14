@@ -1,7 +1,7 @@
 # GazeHeatPlot
 Simple Python command line based script to generate a gaze heatmap from a csv file. 👁️
 
-## Usagesdfsdfsf
+## Usage
 Install the required dependencies over the command line.
 ```bash
 pip install -r requirements.text
@@ -9,5 +9,5 @@ pip install -r requirements.text
 
 Run the script from the command line.
 ```bash  
-python gazeheatplot.py -i gaze-data.csv -dw 1440 -dh 900 []  
+python gazeheatplot.py --input-path gaze-data.csv -display-width 1440 -display-height 900 [--alpha 0.9] [--output-name my-output-name]  
 ``` 

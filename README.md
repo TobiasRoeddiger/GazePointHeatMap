@@ -1,5 +1,5 @@
-# GazeHeatPlot
-Simple Python command line based script to generate a gaze heatmap from a csv file. 👁️
+# Gaze Heat Plot
+Simple Python command line based script to generate a gaze heat map from a csv file. 👁️
 
 ## Usage
 Install the required dependencies over the command line.
@@ -21,6 +21,12 @@ python gazeheatplot.py --input-path gaze-data.csv --display-width 1440 --display
  [-o OUTPUT_NAME      --output-name OUTPUT_NAME            name of the output file                   ]
  [-b BACKGROUND_IMAGE --background-image BACKGROUND_IMAGE  path to the background image              ]
  ```
- 
+
+### Data Format
+|     X         |        Y      |
+| ------------- | ------------- |
+|     123       |      654      |
+|     121       |      657      |
+
  ## Appreciation
  The script is based on the heat map plotter of [PyGaze](http://www.pygaze.org).

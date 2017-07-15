@@ -1,5 +1,5 @@
 # Gaze Point Heat Map
-Easy to use command line based tool to generate a gaze point heat map from a csv file. 👁️
+Easy to use command line based tool to generate gaze point or fixation heat maps from a csv file. 👁️
 
 ## Usage
 Install the required dependencies over the command line.
@@ -35,11 +35,13 @@ ADVANCED OPTIONAL ARGUMENTS:
 **Note:** To add a background image make sure to *provide the whole path and only png images without an alpha channel which are not larger than the provided display width and display height*.
 
 ### Data Format
-|     X         |        Y      |
-|:-------------:|:-------------:|
-|     123       |      654      |
-|     121       |      657      |
-|     ...       |      ...      |
+Each line contains at least an X- and Y-value. If you have fixation data and want to take the duration into account you can add it to the end of each row. The data has to be formatted in the [CSV format](https://en.wikipedia.org/wiki/Comma-separated_values).
+
+| X | Y | Duration (optional) |
+|:-:|:-:|:-------------------:|
+|123|654|         226         |
+|134|662|         234         |
+|...|...|         ...         |
 
 ## Results
 ![Example Output](https://github.com/r0ehre/GazeHeatPlot/blob/master/Example%20Output/output.png)

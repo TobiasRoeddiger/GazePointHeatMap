@@ -31,7 +31,7 @@ python gazeheatplot.py --input-path gaze-data.csv --display-width 1440 --display
 |     ...       |      ...      |
 
 ## Results
-![Example Output](/Example Output/output.png "Example Output")
+![Example Output](https://github.com/r0ehre/GazeHeatPlot/blob/master/Example%20Output/output.png)
 
  ## Appreciation
  The script is based on the heat map plotter of [PyGaze](http://www.pygaze.org).

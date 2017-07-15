@@ -1,5 +1,5 @@
 # Gaze Point Heat Map
-Easy to use command line based tool to generate gaze point or fixation heat maps from a csv file. 👁️
+Easy to use command line based tool to generate gaze point heat maps from a csv file. 👁️
 
 ## Usage
 Install the required dependencies over the command line.

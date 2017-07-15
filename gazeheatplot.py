@@ -1,9 +1,9 @@
 import os
+import argparse
+import csv
 import numpy
 import matplotlib
 from matplotlib import pyplot, image
-import csv
-import argparse
 
 def draw_display(dispsize, imagefile=None):
     """Returns a matplotlib.pyplot Figure and its axes, with a size of
@@ -92,7 +92,7 @@ def gaussian(x, sx, y=None, sy=None):
 
     return M
 
-def draw_heatmap(gazepoints, dispsize, imagefile=None, alpha=0.5, savefilename=None):
+def draw_heatmap(gazepoints, dispsize, imagefile=None, alpha=0.5, savefilename=None, gaussianwh=200, gaussiansd=None):
     """Draws a heatmap of the provided fixations, optionally drawn over an
     image, and optionally allocating more weight to fixations with a higher
     duration.
@@ -128,8 +128,8 @@ def draw_heatmap(gazepoints, dispsize, imagefile=None, alpha=0.5, savefilename=N
 
     # HEATMAP
     # Gaussian
-    gwh = 200
-    gsdwh = gwh / 6
+    gwh = gaussianwh
+    gsdwh = gwh / 6 if (gaussiansd is None) else gaussiansd
     gaus = gaussian(gwh, gsdwh)
     # matrix of zeroes
     strt = gwh / 2
@@ -157,13 +157,13 @@ def draw_heatmap(gazepoints, dispsize, imagefile=None, alpha=0.5, savefilename=N
                 vadj[1] = gwh - int(y - dispsize[1])
             # add adjusted Gaussian to the current heatmap
             try:
-                heatmap[y:y + vadj[1], x:x + hadj[1]] += gaus[vadj[0]:vadj[1], hadj[0]:hadj[1]] * fix['dur'][i]
+                heatmap[y:y + vadj[1], x:x + hadj[1]] += gaus[vadj[0]:vadj[1], hadj[0]:hadj[1]] # * duration
             except:
                 # fixation was probably outside of display
                 pass
         else:
             # add Gaussian to the current heatmap
-            heatmap[y:y + gwh, x:x + gwh] += gaus
+            heatmap[y:y + gwh, x:x + gwh] += gaus # * duration
     # resize heatmap
     heatmap = heatmap[strt:dispsize[1] + strt, strt:dispsize[0] + strt]
     # remove zeros
@@ -198,6 +198,11 @@ parser.add_argument('-a', '--alpha', type=float, default='0.5', required=False, 
 parser.add_argument('-o',  '--output-name', type=str, required=False, help='name for the output file')
 parser.add_argument('-b',  '--background-image', type=str, default=None, required=False, help='path to the background image')
 
+#advanced optional args
+parser.add_argument('-n', '--n-gaussian-matrix', type=int, default='200', required=False, help='width and height of gaussian matrix')
+parser.add_argument('-sd',  '--standard-deviation', type=float, default=None ,required=False, help='standard deviation of gaussian distribution')
+
+
 args = vars(parser.parse_args())
 
 input_path = args['input-path']
@@ -206,11 +211,13 @@ display_height = args['display-height']
 alpha = args['alpha']
 output_name = args['output_name'] if args['output_name'] is not None else 'output'
 background_image = args['background_image']
+ngaussian = args['n_gaussian_matrix']
+sd = args['standard_deviation']
 
 with open(input_path) as f:
 	reader = csv.reader(f)
 	raw = list(reader)
 	gaze_data= list(map(lambda q: (int(q[0]), int(q[1])), raw))
-	draw_heatmap(gaze_data, (display_width, display_height), alpha=alpha, savefilename=output_name, imagefile=background_image)
+	draw_heatmap(gaze_data, (display_width, display_height), alpha=alpha, savefilename=output_name, imagefile=background_image, gaussianwh=ngaussian, gaussiansd=sd)
 
    

@@ -15,15 +15,15 @@ python gazeheatplot.py gaze-data.csv 1440 900 [-a 0.6] [-o output-name] [-b /Use
 ### Shortcut and Additional Arguments
 
 ```
-GENERAL:
+GENERAL ARGUMENTS:
 -h                   --help                               show help message and exit
 
-REQUIRED:
+REQUIRED ARGUMENTS:
 input-path                                                path to the csv input
 display-width                                             an integer representing the display width
 display-height                                            an integer representing the display height
 
-OPTIONAL:
+OPTIONAL ARGUMENTS:
 [-a ALPHA            --alpha ALPHA                        alpha of the gaze overlay                 ]
 [-o OUTPUT_NAME      --output-name OUTPUT_NAME            name of the output file                   ]
 [-b BACKGROUND_IMAGE --background-image BACKGROUND_IMAGE  path to the background image              ]

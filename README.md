@@ -28,7 +28,7 @@ OPTIONAL ARGUMENTS:
 [-o OUTPUT_NAME      --output-name OUTPUT_NAME            name of the output file                   ]
 [-b BACKGROUND_IMAGE --background-image BACKGROUND_IMAGE  path to the background image              ]
 ```
-**Note:** To add a background image make sure to *provide the whole path* and *only png images without an alpha channel and the same resolution as the provided dw and dh*.
+**Note:** To add a background image make sure to *provide the whole path* and *only png images without an alpha channel and the same resolution as the provided display width and display height*.
 
 ### Data Format
 |     X         |        Y      |

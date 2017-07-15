@@ -13,7 +13,7 @@ python gazeheatplot.py --input-path gaze-data.csv --display-width 1440 --display
 ``` 
 
 ### Shortcut and Additional Arguments
-```bash
+```
 general:
 -h                   --help                               show help message and exit
 

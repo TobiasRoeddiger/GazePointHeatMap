@@ -9,7 +9,7 @@ pip install -r requirements.txt
 
 Run the script from the command line.
 ```bash  
-python gazeheatplot.py --input-path gaze-data.csv --display-width 1440 --display-height 900
+python gazeheatplot.py gaze-data.csv 1440 900 [-a 0.6] [-o output-name] [-b /Users/Me/background.png]
 ``` 
 
 ### Shortcut and Additional Arguments
@@ -17,12 +17,12 @@ python gazeheatplot.py --input-path gaze-data.csv --display-width 1440 --display
 general:
 -h                   --help                               show help message and exit
 
-required:
--i INPUT_PATH        --input-path INPUT_PATH              path to the csv input
--dw DISPLAY_WIDTH    --display-width DISPLAY_WIDTH        an integer representing the display width
--dh DISPLAY_HEIGHT   --display-height DISPLAY_HEIGHT      an integer representing the display height
+required positional arguments:
+input-path                                                path to the csv input
+display-width                                             an integer representing the display width
+display-height                                            an integer representing the display height
 
-optional:
+optional arguments:
 [-a ALPHA            --alpha ALPHA                        alpha of the gaze overlay                 ]
 [-o OUTPUT_NAME      --output-name OUTPUT_NAME            name of the output file                   ]
 [-b BACKGROUND_IMAGE --background-image BACKGROUND_IMAGE  path to the background image              ]

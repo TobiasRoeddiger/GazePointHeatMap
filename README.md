@@ -1,5 +1,5 @@
 # Gaze Heat Plot
-Simple Python command line based script to generate a gaze heat map from a csv file. 👁️
+Simple Python command line based script to generate a gaze point heat map from a csv file. 👁️
 
 ## Usage
 Install the required dependencies over the command line.

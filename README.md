@@ -21,6 +21,7 @@ python gazeheatplot.py --input-path gaze-data.csv --display-width 1440 --display
  [-o OUTPUT_NAME      --output-name OUTPUT_NAME            name of the output file                   ]
  [-b BACKGROUND_IMAGE --background-image BACKGROUND_IMAGE  path to the background image              ]
  ```
+**Note:** To add a background image make sure to provide the whole path and only png images without an alpha channel.*
 
 ### Data Format
 |     X         |        Y      |

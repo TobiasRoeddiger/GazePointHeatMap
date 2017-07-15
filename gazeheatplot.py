@@ -189,9 +189,9 @@ def draw_heatmap(gazepoints, dispsize, imagefile=None, alpha=0.5, savefilename=N
 parser = argparse.ArgumentParser(description='Parameters required for processing.')
 
 #required args
-parser.add_argument('-i', '--input-path', type=str, help='path to the csv input', required=True)
-parser.add_argument('-dw', '--display-width', type=int, help='an integer representing the display width', required=True)
-parser.add_argument('-dh', '--display-height', type=int, help='an integer representing the display height', required=True)
+parser.add_argument('input-path', type=str, help='path to the csv input')
+parser.add_argument('display-width', type=int, help='an integer representing the display width')
+parser.add_argument('display-height', type=int, help='an integer representing the display height')
 
 #optional args
 parser.add_argument('-a', '--alpha', type=float, default='0.5', required=False, help='alpha for the gaze overlay')

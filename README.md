@@ -14,13 +14,19 @@ python gazeheatplot.py --input-path gaze-data.csv --display-width 1440 --display
 
 ### Shortcut and Additional Arguments
 ```bash
- -i INPUT_PATH        --input-path INPUT_PATH              path to the csv input
- -dw DISPLAY_WIDTH    --display-width DISPLAY_WIDTH        an integer representing the display width
- -dh DISPLAY_HEIGHT   --display-height DISPLAY_HEIGHT      an integer representing the display height
- [-a ALPHA            --alpha ALPHA                        alpha of the gaze overlay                 ]
- [-o OUTPUT_NAME      --output-name OUTPUT_NAME            name of the output file                   ]
- [-b BACKGROUND_IMAGE --background-image BACKGROUND_IMAGE  path to the background image              ]
- ```
+general:
+-h                   --help                               show help message and exit
+
+required:
+-i INPUT_PATH        --input-path INPUT_PATH              path to the csv input
+-dw DISPLAY_WIDTH    --display-width DISPLAY_WIDTH        an integer representing the display width
+-dh DISPLAY_HEIGHT   --display-height DISPLAY_HEIGHT      an integer representing the display height
+
+optional:
+[-a ALPHA            --alpha ALPHA                        alpha of the gaze overlay                 ]
+[-o OUTPUT_NAME      --output-name OUTPUT_NAME            name of the output file                   ]
+[-b BACKGROUND_IMAGE --background-image BACKGROUND_IMAGE  path to the background image              ]
+```
 **Note:** To add a background image make sure to *provide the whole path* and *only png images without an alpha channel and the same resolution as the provided dw and dh*.
 
 ### Data Format

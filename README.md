@@ -36,6 +36,7 @@ ADVANCED OPTIONAL ARGUMENTS:
 
 ### Data Format
 Each line contains at least an X- and Y-value. If you have fixation data and want to take duration into account you can add it at the end of each line.
+
 | X | Y | Duration (optional) |
 |:-:|:-:|:-------------------:|
 |123|654|         226         |

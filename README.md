@@ -9,7 +9,7 @@ pip install -r requirements.txt
 
 Run the script from the command line.
 ```bash  
-python gazeheatplot.py gaze-data.csv 1440 900 [-a 0.6] [-o output-name] [-b /Users/Me/background.png] [-n 200] [-sd 33]
+python gazeheatplot.py gaze-data.csv 1440 900 [-a 0.6] [-o output-name] [-b /Me/background.png] [-n 200] [-sd 33]
 ``` 
 
 ### Shortcut and Additional Arguments

@@ -15,7 +15,7 @@ python gazeheatplot.py gaze-data.csv 1440 900 [-a 0.6] [-o output-name] [-b /Use
 ### Shortcut and Additional Arguments
 
 ```
-**`GENERAL:`**
+GENERAL:
 -h                   --help                               show help message and exit
 
 REQUIRED:

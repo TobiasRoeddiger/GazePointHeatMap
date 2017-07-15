@@ -4,7 +4,7 @@ Simple Python command line based script to generate a gaze point heat map from a
 ## Usage
 Install the required dependencies over the command line.
 ```bash
-pip install -r requirements.text
+pip install -r requirements.txt
 ```
 
 Run the script from the command line.

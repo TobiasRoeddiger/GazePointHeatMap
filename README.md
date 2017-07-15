@@ -12,6 +12,15 @@ Run the script from the command line.
 python gazeheatplot.py gaze-data.csv 1440 900 [-a 0.6] [-o output-name] [-b /Me/bg-image.png] [-n 200] [-sd 33]
 ``` 
 
+### Data Format
+Each line contains at least an X- and Y-value. If you have fixation data and want to take the duration into account you can add it to the end of each row. The data has to be formatted in the [CSV format](https://en.wikipedia.org/wiki/Comma-separated_values) (comma seperated values).
+
+| X | Y | Duration (optional) |
+|:-:|:-:|:-------------------:|
+|123|654|         226         |
+|134|662|         234         |
+|...|...|         ...         |
+
 ### Shortcut and Additional Arguments
 
 ```
@@ -33,15 +42,6 @@ ADVANCED OPTIONAL ARGUMENTS:
 [-sd STAND_DEVIATION  --standard-deviation STAND_DEVIATION   standard deviation of gauss distribution  ]
 ```
 **Note:** To add a background image make sure to *provide the whole path and only png images without an alpha channel which are not larger than the provided display width and display height*.
-
-### Data Format
-Each line contains at least an X- and Y-value. If you have fixation data and want to take the duration into account you can add it to the end of each row. The data has to be formatted in the [CSV format](https://en.wikipedia.org/wiki/Comma-separated_values).
-
-| X | Y | Duration (optional) |
-|:-:|:-:|:-------------------:|
-|123|654|         226         |
-|134|662|         234         |
-|...|...|         ...         |
 
 ## Results
 ![Example Output](https://github.com/r0ehre/GazeHeatPlot/blob/master/Example%20Output/output.png)

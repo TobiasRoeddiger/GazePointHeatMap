@@ -30,7 +30,7 @@ def draw_display(dispsize, imagefile=None):
     """
 
     # construct screen (black background)
-    screen = numpy.zeros((dispsize[1], dispsize[0], 3), dtype='uint8')
+    screen = numpy.zeros((dispsize[1], dispsize[0], 3), dtype='float32')
     # if an image location has been passed, draw the image
     if imagefile != None:
         # check if the path to the image exists
@@ -38,11 +38,7 @@ def draw_display(dispsize, imagefile=None):
             raise Exception("ERROR in draw_display: imagefile not found at '%s'" % imagefile)
         # load image
         img = image.imread(imagefile)
-        # flip image over the horizontal axis
-        # (do not do so on Windows, as the image appears to be loaded with
-        # the correct side up there; what's up with that? :/)
-        if not os.name == 'nt':
-            img = numpy.flipud(img)
+
         # width and height of the image
         w, h = len(img[0]), len(img)
         # x and y position of the image on the display

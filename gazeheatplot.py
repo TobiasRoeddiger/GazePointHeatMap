@@ -200,9 +200,9 @@ parser.add_argument('-b',  '--background-image', type=str, default=None, require
 
 args = vars(parser.parse_args())
 
-input_path = args['input_path']
-display_width = args['display_width']
-display_height = args['display_height']
+input_path = args['input-path']
+display_width = args['display-width']
+display_height = args['display-height']
 alpha = args['alpha']
 output_name = args['output_name'] if args['output_name'] is not None else 'output'
 background_image = args['background_image']

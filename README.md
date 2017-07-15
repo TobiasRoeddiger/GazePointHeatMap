@@ -16,19 +16,23 @@ python gazeheatplot.py gaze-data.csv 1440 900 [-a 0.6] [-o output-name] [-b /Use
 
 ```
 GENERAL ARGUMENTS:
--h                   --help                               show help message and exit
+-h                    --help                                 show help message and exit
 
 REQUIRED ARGUMENTS:
-input-path                                                path to the csv input
-display-width                                             an integer representing the display width
-display-height                                            an integer representing the display height
+input-path                                                   path to the csv input
+display-width                                                an integer representing the display width
+display-height                                               an integer representing the display height
 
 OPTIONAL ARGUMENTS:
-[-a ALPHA            --alpha ALPHA                        alpha of the gaze overlay                 ]
-[-o OUTPUT_NAME      --output-name OUTPUT_NAME            name of the output file                   ]
-[-b BACKGROUND_IMAGE --background-image BACKGROUND_IMAGE  path to the background image              ]
+[-a ALPHA             --alpha ALPHA                          alpha of the gaze overlay                 ]
+[-o OUTPUT_NAME       --output-name OUTPUT_NAME              name of the output file                   ]
+[-b BACKGROUND_IMAGE  --background-image BACKGROUND_IMAGE    path to the background image              ]
+
+ADVANCED OPTIONAL ARGUMENTS:
+[-n N_GAUS_MATRIX     --n-gaussian-matrix N_GAUSS_MATRIX     width and height of gaussian matrix       ]
+[-sd STAND_DEVIATION  --standard-deviation STAND_DEVIATION   standard deviation of gauss distribution  ]
 ```
-**Note:** To add a background image make sure to *provide the whole path* and *only png images without an alpha channel and the same resolution as the provided display width and display height*.
+**Note:** To add a background image make sure to *provide the whole path and only png images without an alpha channel which are not larger than the provided display width and display height*.
 
 ### Data Format
 |     X         |        Y      |

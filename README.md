@@ -2,7 +2,7 @@
 Easy to use command line based tool to generate gaze point heat maps from a csv file. 👁️
 
 ## Usage
-Install the required dependencies over the command line.
+Install the required dependencies from the command line.
 ```bash
 pip install -r requirements.txt
 ```

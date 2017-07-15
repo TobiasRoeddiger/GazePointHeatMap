@@ -29,7 +29,7 @@ OPTIONAL ARGUMENTS:
 [-b BACKGROUND_IMAGE  --background-image BACKGROUND_IMAGE    path to the background image              ]
 
 ADVANCED OPTIONAL ARGUMENTS:
-[-n N_GAUS_MATRIX     --n-gaussian-matrix N_GAUSS_MATRIX     width and height of gaussian matrix       ]
+[-n  N_GAUS_MATRIX    --n-gaussian-matrix N_GAUSS_MATRIX     width and height of gaussian matrix       ]
 [-sd STAND_DEVIATION  --standard-deviation STAND_DEVIATION   standard deviation of gauss distribution  ]
 ```
 **Note:** To add a background image make sure to *provide the whole path and only png images without an alpha channel which are not larger than the provided display width and display height*.

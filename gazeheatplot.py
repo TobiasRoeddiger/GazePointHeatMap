@@ -157,13 +157,13 @@ def draw_heatmap(gazepoints, dispsize, imagefile=None, alpha=0.5, savefilename=N
                 vadj[1] = gwh - int(y - dispsize[1])
             # add adjusted Gaussian to the current heatmap
             try:
-                heatmap[y:y + vadj[1], x:x + hadj[1]] += gaus[vadj[0]:vadj[1], hadj[0]:hadj[1]] # * duration
+                heatmap[y:y + vadj[1], x:x + hadj[1]] += gaus[vadj[0]:vadj[1], hadj[0]:hadj[1]] * gazepoints[i][2]
             except:
                 # fixation was probably outside of display
                 pass
         else:
             # add Gaussian to the current heatmap
-            heatmap[y:y + gwh, x:x + gwh] += gaus # * duration
+            heatmap[y:y + gwh, x:x + gwh] += gaus * gazepoints[i][2]
     # resize heatmap
     heatmap = heatmap[strt:dispsize[1] + strt, strt:dispsize[0] + strt]
     # remove zeros
@@ -217,7 +217,13 @@ sd = args['standard_deviation']
 with open(input_path) as f:
 	reader = csv.reader(f)
 	raw = list(reader)
-	gaze_data= list(map(lambda q: (int(q[0]), int(q[1])), raw))
+	
+	gaza_data = []
+	if len(raw[0]) is 2:
+		gaze_data = list(map(lambda q: (int(q[0]), int(q[1]), 1), raw))
+	else:
+		gaze_data =  list(map(lambda q: (int(q[0]), int(q[1]), int(q[2])), raw))
+		
 	draw_heatmap(gaze_data, (display_width, display_height), alpha=alpha, savefilename=output_name, imagefile=background_image, gaussianwh=ngaussian, gaussiansd=sd)
 
    

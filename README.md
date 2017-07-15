@@ -44,5 +44,5 @@ ADVANCED OPTIONAL ARGUMENTS:
 ## Results
 ![Example Output](https://github.com/r0ehre/GazeHeatPlot/blob/master/Example%20Output/output.png)
 
- ## Appreciation
+ ## Attribution
  The script is based on the heat map plotter of [PyGaze](http://www.pygaze.org).

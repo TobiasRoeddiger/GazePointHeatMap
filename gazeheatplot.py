@@ -199,7 +199,7 @@ parser.add_argument('-dh', '--display-height', type=int, help='an integer repres
 
 #optional args
 parser.add_argument('-a', '--alpha', type=float, default='0.5', required=False, help='alpha for the gaze overlay')
-parser.add_argument('-o',  '--output-name', type=str, default=None, required=False, help='name for the output file')
+parser.add_argument('-o',  '--output-name', type=str, required=False, help='name for the output file')
 parser.add_argument('-b',  '--background-image', type=str, default=None, required=False, help='path to the background image')
 
 args = vars(parser.parse_args())
@@ -208,7 +208,7 @@ input_path = args['input_path']
 display_width = args['display_width']
 display_height = args['display_height']
 alpha = args['alpha']
-output_name = args['output_name']
+output_name = args['output_name'] if args['output_name'] is not None else 'output'
 background_image = args['background_image']
 
 with open(input_path) as f:

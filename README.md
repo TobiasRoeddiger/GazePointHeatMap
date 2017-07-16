@@ -1,5 +1,5 @@
 # Gaze Point Heat Map
-Easy to use command line based tool to generate gaze point heat maps from a csv file. 👁️
+Easy to use command line based tool to generate a gaze point heat map from a csv file. 👁️
 
 ## Usage
 Install the required dependencies from the command line.
@@ -13,7 +13,7 @@ python gazeheatplot.py gaze-data.csv 1440 900 [-a 0.6] [-o output-name] [-b /Me/
 ``` 
 
 ### Data Format
-Each line contains at least an X- and Y-value. If you have fixation data and want to take the duration into account you can add it to the end of each row. The data has to be formatted in the [CSV format](https://en.wikipedia.org/wiki/Comma-separated_values) (comma-separated values).
+Each line contains at least the X- and Y-values. If you have fixation data and want to take the duration into account you can add it to the end of each row. The data has to be formatted in the [CSV format](https://en.wikipedia.org/wiki/Comma-separated_values) (comma-separated values).
 
 | X | Y | Duration (optional) |
 |:-:|:-:|:-------------------:|

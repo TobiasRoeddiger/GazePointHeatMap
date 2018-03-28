@@ -8,7 +8,7 @@ Install the required dependencies from the command line.
 pip install -r requirements.txt
 ```
 
-This tool was created based on Python 2.7. Make sure you are on that Python version to avoid problems. 
+**This tool was created based on Python 2.7. Make sure you are on that Python version to avoid problems.**
 
 Run the script from the command line.
 ```bash  

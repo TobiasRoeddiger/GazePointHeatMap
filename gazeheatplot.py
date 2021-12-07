@@ -12,19 +12,19 @@ def draw_display(dispsize, imagefile=None):
 
     arguments
 
-    dispsize		-	tuple or list indicating the size of the display,
+    dispsize        -   tuple or list indicating the size of the display,
                     e.g. (1024,768)
 
     keyword arguments
 
-    imagefile		-	full path to an image file over which the heatmap
+    imagefile       -   full path to an image file over which the heatmap
                     is to be laid, or None for no image; NOTE: the image
                     may be smaller than the display size, the function
                     assumes that the image was presented at the centre of
                     the display (default = None)
 
     returns
-    fig, ax		-	matplotlib.pyplot Figure and its axes: field of zeros
+    fig, ax     -   matplotlib.pyplot Figure and its axes: field of zeros
                     with a size of dispsize, and an image drawn onto it
                     if an imagefile was passed
     """
@@ -66,12 +66,12 @@ def gaussian(x, sx, y=None, sy=None):
     1 and 0 in a 2D Gaussian distribution
 
     arguments
-    x		-- width in pixels
-    sx		-- width standard deviation
+    x       -- width in pixels
+    sx      -- width standard deviation
 
     keyword argments
-    y		-- height in pixels (default = x)
-    sy		-- height standard deviation (default = sx)
+    y       -- height in pixels (default = x)
+    sy      -- height standard deviation (default = sx)
     """
 
     # square Gaussian if only x values are passed
@@ -99,27 +99,27 @@ def draw_heatmap(gazepoints, dispsize, imagefile=None, alpha=0.5, savefilename=N
 
     arguments
 
-    gazepoints		-	a list of gazepoint tuples (x, y)
+    gazepoints      -   a list of gazepoint tuples (x, y)
     
-    dispsize		-	tuple or list indicating the size of the display,
+    dispsize        -   tuple or list indicating the size of the display,
                     e.g. (1024,768)
 
     keyword arguments
 
-    imagefile		-	full path to an image file over which the heatmap
+    imagefile       -   full path to an image file over which the heatmap
                     is to be laid, or None for no image; NOTE: the image
                     may be smaller than the display size, the function
                     assumes that the image was presented at the centre of
                     the display (default = None)
-    alpha		-	float between 0 and 1, indicating the transparancy of
+    alpha       -   float between 0 and 1, indicating the transparancy of
                     the heatmap, where 0 is completely transparant and 1
                     is completely untransparant (default = 0.5)
-    savefilename	-	full path to the file in which the heatmap should be
+    savefilename    -   full path to the file in which the heatmap should be
                     saved, or None to not save the file (default = None)
 
     returns
 
-    fig			-	a matplotlib.pyplot Figure instance, containing the
+    fig         -   a matplotlib.pyplot Figure instance, containing the
                     heatmap
     """
 
@@ -215,15 +215,15 @@ ngaussian = args['n_gaussian_matrix']
 sd = args['standard_deviation']
 
 with open(input_path) as f:
-	reader = csv.reader(f)
-	raw = list(reader)
-	
-	gaza_data = []
-	if len(raw[0]) is 2:
-		gaze_data = list(map(lambda q: (int(q[0]), int(q[1]), 1), raw))
-	else:
-		gaze_data =  list(map(lambda q: (int(q[0]), int(q[1]), int(q[2])), raw))
-		
-	draw_heatmap(gaze_data, (display_width, display_height), alpha=alpha, savefilename=output_name, imagefile=background_image, gaussianwh=ngaussian, gaussiansd=sd)
+    reader = csv.reader(f)
+    raw = list(reader)
+    
+    gaza_data = []
+    if len(raw[0]) is 2:
+        gaze_data = list(map(lambda q: (int(q[0]), int(q[1]), 1), raw))
+    else:
+        gaze_data =  list(map(lambda q: (int(q[0]), int(q[1]), int(q[2])), raw))
+        
+    draw_heatmap(gaze_data, (display_width, display_height), alpha=alpha, savefilename=output_name, imagefile=background_image, gaussianwh=ngaussian, gaussiansd=sd)
 
    

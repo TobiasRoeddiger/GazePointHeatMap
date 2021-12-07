@@ -42,14 +42,17 @@ def draw_display(dispsize, imagefile=None):
         # width and height of the image
         w, h = len(img[0]), len(img)
         # x and y position of the image on the display
-        x = dispsize[0] / 2 - w / 2
-        y = dispsize[1] / 2 - h / 2
+        x = dispsize[0] // 2 - w // 2
+        y = dispsize[1] // 2 - h // 2
         # draw the image on the screen
+        # remove alpha channel for PNGs
+        if img.shape[-1] == 4:
+            img = img[..., :3]
         screen[y:y + h, x:x + w, :] += img
     # dots per inch
     dpi = 100.0
     # determine the figure size in inches
-    figsize = (dispsize[0] / dpi, dispsize[1] / dpi)
+    figsize = (dispsize[0] // dpi, dispsize[1] // dpi)
     # create a figure
     fig = pyplot.figure(figsize=figsize, dpi=dpi, frameon=False)
     ax = pyplot.Axes(fig, [0, 0, 1, 1])
@@ -57,7 +60,8 @@ def draw_display(dispsize, imagefile=None):
     fig.add_axes(ax)
     # plot display
     ax.axis([0, dispsize[0], 0, dispsize[1]])
-    ax.imshow(screen)  # , origin='upper')
+    ax.imshow(screen.astype(img.dtype))  # , origin='upper')
+    # ax.imshow(screen)  # , origin='upper')
 
     return fig, ax
 
@@ -80,15 +84,15 @@ def gaussian(x, sx, y=None, sy=None):
     if sy == None:
         sy = sx
     # centers
-    xo = x / 2
-    yo = y / 2
+    xo = x // 2
+    yo = y // 2
     # matrix of zeros
     M = numpy.zeros([y, x], dtype=float)
     # gaussian matrix
     for i in range(x):
         for j in range(y):
             M[j, i] = numpy.exp(
-                -1.0 * (((float(i) - xo) ** 2 / (2 * sx * sx)) + ((float(j) - yo) ** 2 / (2 * sy * sy))))
+                -1.0 * (((float(i) - xo) ** 2 // (2 * sx * sx)) + ((float(j) - yo) ** 2 // (2 * sy * sy))))
 
     return M
 
@@ -129,17 +133,17 @@ def draw_heatmap(gazepoints, dispsize, imagefile=None, alpha=0.5, savefilename=N
     # HEATMAP
     # Gaussian
     gwh = gaussianwh
-    gsdwh = gwh / 6 if (gaussiansd is None) else gaussiansd
+    gsdwh = gwh // 6 if (gaussiansd is None) else gaussiansd
     gaus = gaussian(gwh, gsdwh)
     # matrix of zeroes
-    strt = gwh / 2
+    strt = gwh // 2
     heatmapsize = dispsize[1] + 2 * strt, dispsize[0] + 2 * strt
     heatmap = numpy.zeros(heatmapsize, dtype=float)
     # create heatmap
     for i in range(0, len(gazepoints)):
         # get x and y coordinates
-        x = strt + gazepoints[i][0] - int(gwh / 2)
-        y = strt + gazepoints[i][1] - int(gwh / 2)
+        x = strt + gazepoints[i][0] - int(gwh // 2)
+        y = strt + gazepoints[i][1] - int(gwh // 2)
         # correct Gaussian size if either coordinate falls outside of
         # display boundaries
         if (not 0 < x < dispsize[0]) or (not 0 < y < dispsize[1]):
@@ -189,40 +193,46 @@ def draw_heatmap(gazepoints, dispsize, imagefile=None, alpha=0.5, savefilename=N
 parser = argparse.ArgumentParser(description='Parameters required for processing.')
 
 #required args
-parser.add_argument('input-path', type=str, help='path to the csv input')
-parser.add_argument('display-width', type=int, help='an integer representing the display width')
-parser.add_argument('display-height', type=int, help='an integer representing the display height')
+parser.add_argument('input_path', type=str, help='path to the csv input')
+parser.add_argument('display_width', type=int, help='an integer representing the display width')
+parser.add_argument('display_height', type=int, help='an integer representing the display height')
 
 #optional args
 parser.add_argument('-a', '--alpha', type=float, default='0.5', required=False, help='alpha for the gaze overlay')
-parser.add_argument('-o',  '--output-name', type=str, required=False, help='name for the output file')
+parser.add_argument('-o',  '--output-name', type=str, required=False, default='output', help='name for the output file')
 parser.add_argument('-b',  '--background-image', type=str, default=None, required=False, help='path to the background image')
 
 #advanced optional args
 parser.add_argument('-n', '--n-gaussian-matrix', type=int, default='200', required=False, help='width and height of gaussian matrix')
 parser.add_argument('-sd',  '--standard-deviation', type=float, default=None ,required=False, help='standard deviation of gaussian distribution')
+parser.add_argument('-rel', '--relative', action='store_true', default=False, required=False, help='Specify whether the CSV data is relative or absolute')
+
+args = parser.parse_args()
 
 
-args = vars(parser.parse_args())
+display_width = args.display_width
+display_height = args.display_height
+alpha = args.alpha
+output_name = args.output_name
+background_image = args.background_image
+ngaussian = args.n_gaussian_matrix
+sd = args.standard_deviation
 
-input_path = args['input-path']
-display_width = args['display-width']
-display_height = args['display-height']
-alpha = args['alpha']
-output_name = args['output_name'] if args['output_name'] is not None else 'output'
-background_image = args['background_image']
-ngaussian = args['n_gaussian_matrix']
-sd = args['standard_deviation']
-
-with open(input_path) as f:
+with open(args.input_path) as f:
     reader = csv.reader(f)
     raw = list(reader)
     
     gaza_data = []
-    if len(raw[0]) is 2:
-        gaze_data = list(map(lambda q: (int(q[0]), int(q[1]), 1), raw))
+    if len(raw[0]) == 2:
+        if args.relative:
+            gaze_data = list(map(lambda q: (int(display_width * float(q[0])), int(display_height * float(q[1])), 1), raw))
+        else:
+            gaze_data = list(map(lambda q: (int(q[0]), int(q[1]), 1), raw))
     else:
-        gaze_data =  list(map(lambda q: (int(q[0]), int(q[1]), int(q[2])), raw))
+        if args.relative:
+            gaze_data = list(map(lambda q: (int(display_width * float(q[0])), int(display_height * float(q[1])), int(q[2])), raw))
+        else:
+            gaze_data =  list(map(lambda q: (int(q[0]), int(q[1]), int(q[2])), raw))
         
     draw_heatmap(gaze_data, (display_width, display_height), alpha=alpha, savefilename=output_name, imagefile=background_image, gaussianwh=ngaussian, gaussiansd=sd)
 
